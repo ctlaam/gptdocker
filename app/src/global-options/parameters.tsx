@@ -67,7 +67,7 @@ export const parameterOptions: OptionGroup = {
         },
         {
             id: "temperature",
-            defaultValue: 0.5,
+            defaultValue: Number(import.meta.env.VITE_TEM),
             resettable: true,
             scope: "chat",
             displayOnSettingsScreen: "chat",

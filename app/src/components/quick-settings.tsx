@@ -44,11 +44,7 @@ export function QuickSettingsButton(props: { groupID: string, option: Option }) 
     }
 
     return (
-        <Button variant="subtle" size="xs" compact onClick={onClick}>
-            <span>
-                {label}
-            </span>
-        </Button>
+        ""
     )
 }
 

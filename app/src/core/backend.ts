@@ -57,32 +57,32 @@ export class Backend extends EventEmitter {
         }
 
         const wasAuthenticated = this.isAuthenticated;
-        const session = await this.get(endpoint + '/session');
+        // const session = await this.get(endpoint + '/session');
 
-        if (session?.authProvider) {
-            (window as any).AUTH_PROVIDER = session.authProvider;
-        }
+        // if (session?.authProvider) {
+        //     (window as any).AUTH_PROVIDER = session.authProvider;
+        // }
 
-        if (session?.authenticated) {
-            this.user = {
-                id: session.userID,
-                email: session.email,
-                name: session.name,
-                avatar: session.picture,
-                services: session.services,
-            };
-            this.services = session.services || [];
-        } else {
-            this.user = null;
-            this.services = session?.services || [];
-        }
+        // if (session?.authenticated) {
+        //     this.user = {
+        //         id: session.userID,
+        //         email: session.email,
+        //         name: session.name,
+        //         avatar: session.picture,
+        //         services: session.services,
+        //     };
+        //     this.services = session.services || [];
+        // } else {
+        //     this.user = null;
+        //     this.services = session?.services || [];
+        // }
 
-        this.checkedSession = true;
+        // this.checkedSession = true;
 
-        if (wasAuthenticated !== this.isAuthenticated) {
-            this.emit('authenticated', this.isAuthenticated);
-            this.lastFullSyncAt = 0;
-        }
+        // if (wasAuthenticated !== this.isAuthenticated) {
+        //     this.emit('authenticated', this.isAuthenticated);
+        //     this.lastFullSyncAt = 0;
+        // }
     }
 
     public async sync() {

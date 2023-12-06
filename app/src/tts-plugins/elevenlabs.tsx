@@ -148,16 +148,16 @@ export default class ElevenLabsPlugin extends TTSPlugin<ElevenLabsPluginOptions>
      * This function stores the list of voices in a static variable, which is used elsewhere.
      * @returns {Promise<Voice[]>} A promise that resolves to an array of Voice objects.
      */
-    async getVoices(): Promise<Voice[]> {
-        const response = await fetch(`${this.endpoint}/v1/voices`, {
-            headers: this.createHeaders(),
-        });
-        const json = await response.json();
-        if (json?.voices?.length) {
-            ElevenLabsPlugin.voices = json.voices.map(getVoiceFromElevenlabsVoiceObject);
-        }
-        return ElevenLabsPlugin.voices;
-    }
+    // async getVoices(): Promise<Voice[]> {
+    //     const response = await fetch(`${this.endpoint}/v1/voices`, {
+    //         headers: this.createHeaders(),
+    //     });
+    //     const json = await response.json();
+    //     if (json?.voices?.length) {
+    //         ElevenLabsPlugin.voices = json.voices.map(getVoiceFromElevenlabsVoiceObject);
+    //     }
+    //     return ElevenLabsPlugin.voices;
+    // }
 
     /**
      * Returns the current voice based on the plugin options.

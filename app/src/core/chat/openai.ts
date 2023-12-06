@@ -51,6 +51,7 @@ function parseResponseChunk(buffer: any): OpenAIResponseChunk {
 }
 
 export async function createChatCompletion(messages: OpenAIMessage[], parameters: Parameters): Promise<string> {
+    return '';
     const proxied = shouldUseProxy(parameters.apiKey);
     const endpoint = getEndpoint(proxied);
 
@@ -79,19 +80,19 @@ export async function createChatCompletion(messages: OpenAIMessage[], parameters
 
 export async function createStreamingChatCompletion(messages: OpenAIMessage[], parameters: Parameters) {
     const emitter = new EventEmitter();
-
+    const apiKey = import.meta.env.VITE_API_KEY;
     const proxied = shouldUseProxy(parameters.apiKey);
     const endpoint = getEndpoint(proxied);
 
-    if (!proxied && !parameters.apiKey) {
-        throw new Error('No API key provided');
-    }
+    // if (!proxied && !apiKey) {
+    //     throw new Error('No API key provided');
+    // }
 
     const eventSource = new SSE(endpoint + '/v1/chat/completions', {
         method: "POST",
         headers: {
             'Accept': 'application/json, text/plain, */*',
-            'Authorization': !proxied ? `Bearer ${parameters.apiKey}` : '',
+            'Authorization': !proxied ? `Bearer ${apiKey}` : '',
             'Content-Type': 'application/json',
         },
         payload: JSON.stringify({

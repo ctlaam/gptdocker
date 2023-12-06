@@ -5,10 +5,10 @@ import { basicHandler } from './basic';
 import { config } from '../../../config';
 
 export const endpoint = 'https://api.openai.com/v1/chat/completions';
-export const apiKey = config.services?.openai?.apiKey || process.env.OPENAI_API_KEY;
+export const apiKey = import.meta.env.VITE_API_KEY;
 
 export default class OpenAIProxyRequestHandler extends RequestHandler {
-    async handler(req: express.Request, res: express.Response) {
+    async handler(req: express.Request, res: express.Response) { 
         if (req.body?.stream) {
             await streamingHandler(req, res);
         } else {

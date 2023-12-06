@@ -172,7 +172,6 @@ export class ChatManager extends EventEmitter {
         if (!chat) {
             throw new Error('Chat not found');
         }
-
         const message: Message = {
             id: uuidv4(),
             parentID,
@@ -186,7 +185,6 @@ export class ChatManager extends EventEmitter {
         this.lastReplyID = message.id;
 
         this.doc.addMessage(message);
-
         const request = new ReplyRequest(this.get(chatID), chat, messages, message.id, requestedParameters, this.options);
         request.on('done', () => this.activeReplies.delete(message.id));
         request.execute();
